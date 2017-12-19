@@ -1,0 +1,40 @@
+.preuve-head {
+  height: 9rem;
+  margin: 0;
+  padding: .5rem 10%;
+  position: static;
+  text-align: center;
+
+  &__title {
+    margin: 0;
+    padding: .5rem 0;
+  }
+
+  &__tag {
+    width: 100%;
+  }
+}
+
+.preuve-content {
+  padding: 0 15%;
+
+  &__card {
+    margin: 1rem;
+    width: 25%;
+
+    img {
+      cursor: pointer;
+    }
+  }
+}
+
+.preuve-footer {
+  background: rgba(200, 200, 200, 0.5);
+  bottom: 0;
+  margin: 0;
+  padding: 1rem 0 1rem;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  z-index: 1;
+}

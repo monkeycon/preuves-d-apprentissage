@@ -1,0 +1,48 @@
+<div class="preuve-head">
+  <h1 class="preuve-head__title">
+    Preuve d'apprentissage
+  </h1>
+  <mat-form-field class="preuve-head__tag">
+    <mat-chip-list #chipList>
+      <mat-chip *ngFor="let tag of tags" removable="true" (remove)="remove(tag)">
+        {{tag.name}}
+        <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+      </mat-chip>
+      <input matInput placeholder="Search by tag..."
+             [matChipInputFor]="chipList"
+             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+             [matChipInputAddOnBlur]="true"
+             (matChipInputTokenEnd)="add($event)" />
+      <button mat-button color="primary" *ngIf="tags.length" matSuffix mat-icon-button aria-label="Search" (click)="onClickSearch()">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-chip-list>
+  </mat-form-field>
+  <div style="text-align:right">
+    <mat-slide-toggle color="primary">Toggle forme</mat-slide-toggle>
+  </div>
+</div>
+
+<div class="preuve-content">
+  <mat-card class="preuve-content__card">
+    <mat-card-header>
+      <mat-card-title>Rapport du Projet.pdf</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p style="text-align:center">
+        <img mat-card-md-image src="/src/app/image/pdf.jpg" alt="PDF">
+      </p>
+      <p>
+        C'est le rapport d'un projet en pdf. Ce projet est de developper une application en utilisant Angular framework.
+      </p>
+      <mat-chip-list>
+        <mat-chip>angular</mat-chip>
+        <mat-chip>typescript</mat-chip>
+      </mat-chip-list>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="preuve-footer">
+  <button mat-raised-button color="primary" (click)="openDialog()">Ajouter une preuve</button>
+</div>
