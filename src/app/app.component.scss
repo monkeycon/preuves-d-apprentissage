@@ -1,5 +1,5 @@
 .preuve-head {
-  height: 9rem;
+  height: 10.5rem;
   margin: 0;
   padding: .5rem 10%;
   position: static;
@@ -19,11 +19,24 @@
   padding: 0 15%;
 
   &__card {
-    margin: 1rem;
-    width: 25%;
+    margin: .5rem;
 
     img {
       cursor: pointer;
+    }
+  }
+
+  &__list {
+    .mat-list-icon {
+      color: rgba(0, 0, 0, 0.5);
+    }
+
+    .list__item {
+      height: 100px;
+
+      .list__chip {
+        margin: 3px;
+      }
     }
   }
 }

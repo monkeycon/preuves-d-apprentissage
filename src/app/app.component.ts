@@ -8,33 +8,27 @@ import { ENTER, COMMA } from '@angular/cdk/keycodes';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
   public tags = [
-    // { name: 'javascript' },
     { name: 'angular' },
   ];
-
-  // Enter, comma
+  public preuvesForme = false;
   public separatorKeysCodes = [ENTER, COMMA];
 
-  public add(event: MatChipInputEvent): void {
+  public addTag(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
-
-    // Add our tag
+    // Add a tag
     if ((value || '').trim()) {
       this.tags.push({ name: value.trim() });
     }
-
     // Reset the input value
     if (input) {
       input.value = '';
     }
   }
 
-  public remove(tag: any): void {
+  public removeTag(tag: any): void {
     const index = this.tags.indexOf(tag);
-
     if (index >= 0) {
       this.tags.splice(index, 1);
     }
@@ -42,6 +36,10 @@ export class AppComponent {
 
   public onClickSearch(): void {
     console.log('search ' + this.tags.map((ele) => ele.name));
+  }
+
+  public toggleForme(event: any): void {
+    this.preuvesForme = event.checked;
   }
 
   public openDialog(): void {
