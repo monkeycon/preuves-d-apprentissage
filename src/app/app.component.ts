@@ -1,17 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
+import { PreuvesService } from './preuves/preuves.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  providers: [PreuvesService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   public searchedTags = [];
   public preuvesForme = false;
   public separatorKeysCodes = [ENTER, COMMA];
   public preuves = [];
+
+  public constructor(private preuvesService: PreuvesService) {}
+
+  public ngOnInit() {
+    this.preuves = this.preuvesService.getPreuves();
+  }
 
   public addTag(event: MatChipInputEvent): void {
     const input = event.input;
@@ -35,6 +43,7 @@ export class AppComponent {
 
   public onClickSearch(): void {
     const searched = this.searchedTags.map((ele) => ele.name);
+    this.preuves = this.preuvesService.getPreuvesByTag(searched);
   }
 
   public toggleForme(event: any): void {

@@ -16,13 +16,14 @@
 }
 
 .preuve-content {
-  padding: 0 15%;
+  padding: 0 15% 4.5rem;
 
   &__card {
-    margin: .5rem;
+    margin: .3rem;
 
     img {
       cursor: pointer;
+      width: auto;
     }
   }
 
