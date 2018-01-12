@@ -11,6 +11,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import { AppComponent } from './app.component';
 
@@ -31,6 +32,7 @@ import { AppComponent } from './app.component';
     MatCardModule,
     MatSlideToggleModule,
     MatListModule,
+    MatGridListModule,
   ],
   exports: [],
   providers: [],

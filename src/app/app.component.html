@@ -4,16 +4,16 @@
   </h1>
   <mat-form-field class="preuve-head__tag">
     <mat-chip-list #chipList>
-      <mat-chip *ngFor="let tag of tags" removable="true" (remove)="removeTag(tag)">
+      <mat-chip *ngFor="let tag of searchedTags" removable="true" (remove)="removeTag(tag)">
         {{tag.name}}
         <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
       </mat-chip>
-      <input matInput placeholder="Search by tag..."
+      <input matInput placeholder="Recherche par tag..."
              [matChipInputFor]="chipList"
              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
              [matChipInputAddOnBlur]="true"
              (matChipInputTokenEnd)="addTag($event)" />
-      <button mat-button color="primary" *ngIf="tags.length" matSuffix mat-icon-button aria-label="Search" (click)="onClickSearch()">
+      <button mat-button color="primary" matSuffix mat-icon-button aria-label="Search" (click)="onClickSearch()">
         <mat-icon>search</mat-icon>
       </button>
     </mat-chip-list>
@@ -24,94 +24,41 @@
 </div>
 
 <div class="preuve-content">
-  <table *ngIf="!preuvesForme">
-    <tr>
-      <td>
-        <mat-card class="preuve-content__card">
-          <mat-card-header>
-            <mat-card-title>Rapport du Projet.pdf</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <p style="text-align:center">
-              <img mat-card-md-image src="https://raw.githubusercontent.com/monkeycon/preuve-d-apprentissage/master/src/app/image/pdf.jpg" alt="PDF">
-            </p>
-            <p>
-              C'est le rapport d'un projet en pdf. Ce projet est de developper une application en utilisant Angular framework.
-            </p>
-            <mat-chip-list>
-              <mat-chip>angular</mat-chip>
-              <mat-chip>typescript</mat-chip>
-            </mat-chip-list>
-          </mat-card-content>
-        </mat-card>
-      </td>
-      <td>
-        <mat-card class="preuve-content__card">
-          <mat-card-header>
-            <mat-card-title>Rapport du Projet.pdf</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <p style="text-align:center">
-              <img mat-card-md-image src="https://raw.githubusercontent.com/monkeycon/preuve-d-apprentissage/master/src/app/image/pdf.jpg" alt="PDF">
-            </p>
-            <p>
-              C'est le rapport d'un projet en pdf. Ce projet est de developper une application en utilisant Angular framework.
-            </p>
-            <mat-chip-list>
-              <mat-chip>angular</mat-chip>
-              <mat-chip>typescript</mat-chip>
-            </mat-chip-list>
-          </mat-card-content>
-        </mat-card>
-      </td>
-      <td>
-        <mat-card class="preuve-content__card">
-          <mat-card-header>
-            <mat-card-title>Rapport du Projet.pdf</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <p style="text-align:center">
-              <img mat-card-md-image src="https://raw.githubusercontent.com/monkeycon/preuve-d-apprentissage/master/src/app/image/pdf.jpg" alt="PDF">
-            </p>
-            <p>
-              C'est le rapport d'un projet en pdf. Ce projet est de developper une application en utilisant Angular framework.
-            </p>
-            <mat-chip-list>
-              <mat-chip>angular</mat-chip>
-              <mat-chip>typescript</mat-chip>
-            </mat-chip-list>
-          </mat-card-content>
-        </mat-card>
-      </td>
-    </tr>
-  </table>
+  <mat-grid-list cols="3" gutterSize="1rem" *ngIf="!preuvesForme">
+    <mat-grid-tile *ngFor="let preuve of preuves">
+      <mat-card class="preuve-content__card">
+        <mat-card-header>
+          <mat-card-title>{{preuve.name}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p style="text-align:center">
+            <img mat-card-md-image src="{{preuve.path}}" alt="file" *ngIf="isImage(preuve.path); else notImageBlock">
+            <ng-template #notImageBlock>
+              <img mat-card-md-image src="assets/images/pdf.jpg" alt="{{preuve.name}}" *ngIf="preuve.name.endsWith('.pdf'); else elseBlock">
+              <ng-template #elseBlock>
+                <img mat-card-md-image src="assets/images/file.png" alt="{{preuve.name}}">
+              </ng-template>
+            </ng-template>
+          </p>
+          <p>{{preuve.description}}</p>
+          <mat-chip-list>
+            <mat-chip class="list__chip" *ngFor="let tag of preuve.tags">{{tag}}</mat-chip>
+          </mat-chip-list>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
 
   <mat-list class="preuve-content__list" *ngIf="preuvesForme">
-    <mat-list-item class="list__item">
-      <mat-icon mat-list-icon>insert_drive_file</mat-icon>
-      <h4 mat-line>Rapport du Projet.pdf</h4>
-      <p mat-line>C'est le rapport d'un projet en pdf. Ce projet est de developper une application en utilisant Angular framework.</p>
+    <mat-list-item class="list__item" *ngFor="let preuve of preuves">
+      <mat-icon mat-list-icon *ngIf="isImage(preuve.path); else notImageIconBlock">image</mat-icon>
+      <ng-template #notImageIconBlock>
+        <mat-icon mat-list-icon>insert_drive_file</mat-icon>
+      </ng-template>
+      <h4 mat-line>{{preuve.name}}</h4>
+      <p mat-line>{{preuve.description}}</p>
       <mat-chip-list mat-line>
-        <mat-chip class="list__chip">angular</mat-chip>
-        <mat-chip class="list__chip">typescript</mat-chip>
-      </mat-chip-list>
-    </mat-list-item>
-    <mat-list-item class="list__item">
-      <mat-icon mat-list-icon>insert_drive_file</mat-icon>
-      <h4 mat-line>Rapport du Projet.pdf</h4>
-      <p mat-line>C'est le rapport d'un projet en pdf. Ce projet est de developper une application en utilisant Angular framework.</p>
-      <mat-chip-list mat-line>
-        <mat-chip class="list__chip">angular</mat-chip>
-        <mat-chip class="list__chip">typescript</mat-chip>
-      </mat-chip-list>
-    </mat-list-item>
-    <mat-list-item class="list__item">
-      <mat-icon mat-list-icon>insert_drive_file</mat-icon>
-      <h4 mat-line>Rapport du Projet.pdf</h4>
-      <p mat-line>C'est le rapport d'un projet en pdf. Ce projet est de developper une application en utilisant Angular framework.</p>
-      <mat-chip-list mat-line>
-        <mat-chip class="list__chip">angular</mat-chip>
-        <mat-chip class="list__chip">typescript</mat-chip>
+        <mat-chip class="list__chip" *ngFor="let tag of preuve.tags">{{tag}}</mat-chip>
       </mat-chip-list>
     </mat-list-item>
   </mat-list>
