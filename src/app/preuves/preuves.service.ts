@@ -15,6 +15,11 @@ export class PreuvesService {
 
   public getPreuvesByTag(searchedTags: string[]) {
     const searchedPreuves = [];
+    this.preuves.map((ele) => {
+      if (searchedTags.every((e) => ele.tags.indexOf(e) !== -1)) {
+        searchedPreuves.push(ele);
+      }
+    });
     return searchedPreuves;
   }
 }
