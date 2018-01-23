@@ -1,0 +1,69 @@
+<div class="proof-head">
+  <h1 class="proof-head__title">
+    Preuves d'apprentissage
+  </h1>
+  <mat-form-field class="proof-head__tag">
+    <mat-chip-list #chipList>
+      <mat-chip *ngFor="let tag of searchedTags" removable="true" (remove)="removeTag(tag)">
+        {{tag.name}}
+        <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+      </mat-chip>
+      <input matInput placeholder="Recherche par tag..."
+             [matChipInputFor]="chipList"
+             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+             [matChipInputAddOnBlur]="true"
+             (matChipInputTokenEnd)="addTag($event)" />
+      <button mat-button color="primary" matSuffix mat-icon-button aria-label="Search" (click)="onClickSearch()">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-chip-list>
+  </mat-form-field>
+  <div style="text-align:right">
+    <mat-slide-toggle color="primary" [checked]="proofForme" (change)="toggleForme($event)">Toggle forme</mat-slide-toggle>
+  </div>
+</div>
+
+<div class="proof-content">
+  <mat-grid-list cols="3" gutterSize="1rem" *ngIf="!proofForme">
+    <mat-grid-tile *ngFor="let oneProof of proof">
+      <mat-card class="proof-content__card">
+        <mat-card-header>
+          <mat-card-title>{{oneProof.name}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p style="text-align:center">
+            <img mat-card-md-image src="{{oneProof.path}}" alt="file" *ngIf="isImage(oneProof.path); else notImageBlock">
+            <ng-template #notImageBlock>
+              <img mat-card-md-image src="assets/images/pdf.jpg" alt="{{oneProof.name}}" *ngIf="oneProof.name.endsWith('.pdf'); else elseBlock">
+              <ng-template #elseBlock>
+                <img mat-card-md-image src="assets/images/file.png" alt="{{oneProof.name}}">
+              </ng-template>
+            </ng-template>
+          </p>
+          <p>{{oneProof.description}}</p>
+          <mat-chip-list>
+            <mat-chip class="list__chip" *ngFor="let tag of oneProof.tags">{{tag}}</mat-chip>
+          </mat-chip-list>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-list class="proof-content__list" *ngIf="proofForme">
+    <mat-list-item class="list__item" *ngFor="let oneProof of proof">
+      <mat-icon mat-list-icon *ngIf="isImage(oneProof.path); else notImageIconBlock">image</mat-icon>
+      <ng-template #notImageIconBlock>
+        <mat-icon mat-list-icon>insert_drive_file</mat-icon>
+      </ng-template>
+      <h4 mat-line>{{oneProof.name}}</h4>
+      <p mat-line>{{oneProof.description}}</p>
+      <mat-chip-list mat-line>
+        <mat-chip class="list__chip" *ngFor="let tag of oneProof.tags">{{tag}}</mat-chip>
+      </mat-chip-list>
+    </mat-list-item>
+  </mat-list>
+</div>
+
+<div class="proof-footer">
+  <button mat-raised-button color="primary" (click)="openDialog()">Ajouter une preuve</button>
+</div>
