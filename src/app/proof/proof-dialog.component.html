@@ -1,1 +1,37 @@
-Dialog
+<h3 mat-dialog-title>
+  Ajouter une preuve
+</h3>
+
+<form class="proof-form">
+  <div class="proof-form__select">
+    <!-- <button mat-raised-button (click)="selectFile()" class="proof-form__select">Select file</button> -->
+    <input type="file" name="" value="" required>
+  </div>
+
+  <mat-form-field class="proof-form__name">
+    <input matInput placeholder="Name" [formControl]="name" required>
+    <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="proof-form__description">
+    <textarea matInput placeholder="Description" [(ngModel)]="description" name="description"></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="proof-form__tag">
+    <mat-chip-list #chipList>
+      <mat-chip *ngFor="let tag of proofTag" removable="true" (remove)="removeTag(tag)">
+        {{tag.name}}
+        <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+      </mat-chip>
+      <input matInput placeholder="Indiquez un/des tag"
+             [matChipInputFor]="chipList"
+             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+             [matChipInputAddOnBlur]="true"
+             (matChipInputTokenEnd)="addTag($event)" />
+    </mat-chip-list>
+  </mat-form-field>
+
+  <div class="proof-form__footer">
+    <button mat-raised-button color="primary" [disabled]="name.invalid" (click)="submit()">Submit</button>
+  </div>
+</form>

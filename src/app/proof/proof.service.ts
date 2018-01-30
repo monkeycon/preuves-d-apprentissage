@@ -22,4 +22,9 @@ export class ProofService {
     });
     return searchedProof;
   }
+
+  public putProof(newProof: any) {
+    this.proof.push(newProof);
+    // TODO insert newProof to DB
+  }
 }

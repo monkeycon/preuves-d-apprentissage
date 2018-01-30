@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatChipInputEvent } from '@angular/material';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatChipInputEvent, MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 
 import { ProofService } from './proof.service';
 import { ProofDialogComponent } from './proof-dialog.component';
@@ -54,17 +53,14 @@ export class ProofComponent implements OnInit {
   }
 
   public openDialog(): void {
-    console.log('open dialog for adding a proof');
     {
       this.dialog.open(ProofDialogComponent, {
-        data: {
-          animal: 'panda'
-        }
+        data: {}
       });
     }
   }
 
   public isImage(path: string) {
-    return path.endsWith('jpg') || path.endsWith('png') || path.endsWith('png');
+    return path ? path.endsWith('jpg') || path.endsWith('png') || path.endsWith('png') : false;
   }
 }
