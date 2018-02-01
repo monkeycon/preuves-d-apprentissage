@@ -56,14 +56,14 @@
 
   <mat-list class="proof-content__list" *ngIf="proofForme">
     <mat-list-item class="list__item" *ngFor="let oneProof of proof">
-      <mat-icon mat-list-icon *ngIf="isImage(oneProof.path); else notImageIconBlock">image</mat-icon>
+      <mat-icon mat-list-icon *ngIf="isImage(oneProof.path); else notImageIconBlock" class="list-item__icon">image</mat-icon>
       <ng-template #notImageIconBlock>
-        <mat-icon mat-list-icon>insert_drive_file</mat-icon>
+        <mat-icon mat-list-icon class="list-item__icon">insert_drive_file</mat-icon>
       </ng-template>
       <h4 mat-line>{{oneProof.name}}</h4>
       <p mat-line>{{oneProof.description}}</p>
       <mat-chip-list mat-line>
-        <mat-chip class="list__chip" *ngFor="let tag of oneProof.tags">{{tag}}</mat-chip>
+        <mat-chip class="list-item__chip" *ngFor="let tag of oneProof.tags">{{tag}}</mat-chip>
       </mat-chip-list>
       <button mat-icon-button (click)="onClickDelete(oneProof)">
         <mat-icon aria-label="delete" style="color:rgba(0,0,0,0.5)">delete</mat-icon>

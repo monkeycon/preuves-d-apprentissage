@@ -35,7 +35,13 @@
     .list__item {
       height: 100px;
 
-      .list__chip {
+      .list-item__icon {
+        font-size: 36px;
+        height: auto;
+        width: auto;
+      }
+
+      .list-item__chip {
         margin: 3px;
       }
     }
