@@ -63,4 +63,8 @@ export class ProofComponent implements OnInit {
   public isImage(path: string) {
     return path ? path.endsWith('jpg') || path.endsWith('png') || path.endsWith('png') : false;
   }
+
+  public onClickDelete(proof: any) {
+    this.proofService.deleteProof(proof);
+  }
 }

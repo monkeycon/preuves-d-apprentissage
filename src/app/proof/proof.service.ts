@@ -27,4 +27,12 @@ export class ProofService {
     this.proof.push(newProof);
     // TODO insert newProof to DB
   }
+
+  public deleteProof(proof: any) {
+    const index = this.proof.indexOf(proof);
+    if (index !== -1) {
+      this.proof.splice(index, 1);
+      // TODO delete proof from DB
+    }
+  }
 }

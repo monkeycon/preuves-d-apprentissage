@@ -45,6 +45,11 @@
             <mat-chip class="list__chip" *ngFor="let tag of oneProof.tags">{{tag}}</mat-chip>
           </mat-chip-list>
         </mat-card-content>
+        <mat-card-actions style="text-align:right">
+          <button mat-icon-button (click)="onClickDelete(oneProof)">
+            <mat-icon aria-label="delete" style="color:rgba(0,0,0,0.5)">delete</mat-icon>
+          </button>
+        </mat-card-actions>
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
@@ -60,6 +65,9 @@
       <mat-chip-list mat-line>
         <mat-chip class="list__chip" *ngFor="let tag of oneProof.tags">{{tag}}</mat-chip>
       </mat-chip-list>
+      <button mat-icon-button (click)="onClickDelete(oneProof)">
+        <mat-icon aria-label="delete" style="color:rgba(0,0,0,0.5)">delete</mat-icon>
+      </button>
     </mat-list-item>
   </mat-list>
 </div>
