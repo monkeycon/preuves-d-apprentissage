@@ -4,12 +4,11 @@
 
 <form class="proof-form">
   <div class="proof-form__select">
-    <!-- <button mat-raised-button (click)="selectFile()" class="proof-form__select">Select file</button> -->
     <input type="file" name="" value="" required>
   </div>
 
   <mat-form-field class="proof-form__name">
-    <input matInput placeholder="Name" [formControl]="name" required>
+    <input matInput placeholder="Nom" [formControl]="name" required>
     <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>
   </mat-form-field>
 
@@ -32,6 +31,6 @@
   </mat-form-field>
 
   <div class="proof-form__footer">
-    <button mat-raised-button color="primary" [disabled]="name.invalid" (click)="submit()">Submit</button>
+    <button mat-raised-button color="primary" [disabled]="name.invalid" (click)="submit()">Soumettre</button>
   </div>
 </form>

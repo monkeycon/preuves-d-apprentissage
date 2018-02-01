@@ -20,7 +20,7 @@ export class ProofDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private proofService: ProofService) {}
 
   public getErrorMessage(): string {
-    return this.name.hasError('required') ? 'You must enter a value' : '';
+    return this.name.hasError('required') ? 'Entrer un nom, svp.' : '';
   }
 
   public addTag(event: MatChipInputEvent): void {
