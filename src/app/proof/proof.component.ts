@@ -65,6 +65,9 @@ export class ProofComponent implements OnInit {
   }
 
   public onClickDelete(proof: any) {
-    this.proofService.deleteProof(proof);
+    const isConfirmed = confirm('Voulez-vous supprimer cette preuve "' + proof.name + '" ?');
+    if (isConfirmed) {
+      this.proofService.deleteProof(proof);
+    }
   }
 }
