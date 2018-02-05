@@ -35,4 +35,9 @@ export class ProofService {
       // TODO delete proof from DB
     }
   }
+
+  // this function is used for unit test
+  public setProof(proofArr: any) {
+    this.proof = proofArr;
+  }
 }
