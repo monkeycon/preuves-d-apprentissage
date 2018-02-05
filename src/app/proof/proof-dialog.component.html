@@ -31,6 +31,6 @@
   </mat-form-field>
 
   <div class="proof-form__footer">
-    <button mat-raised-button color="primary" [disabled]="name.invalid" (click)="submit()">Soumettre</button>
+    <button mat-raised-button color="primary" [disabled]="name.invalid" (click)="submit()" [mat-dialog-close]="true">Soumettre</button>
   </div>
 </form>
