@@ -13,6 +13,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 
+import { DndModule } from 'ng2-dnd';
+
 import { ProofComponent } from './proof.component';
 import { ProofDialogComponent } from './proof-dialog.component';
 
@@ -36,6 +38,7 @@ import { ProofDialogComponent } from './proof-dialog.component';
     MatSlideToggleModule,
     MatListModule,
     MatDialogModule,
+    DndModule.forRoot(),
   ],
   entryComponents: [
     ProofDialogComponent,

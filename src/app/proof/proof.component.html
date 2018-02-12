@@ -24,8 +24,18 @@
 </div>
 
 <div class="proof-content">
+  <div class="proof-content__dnd">
+    <h4>Test of Drag-and-Drop</h4>
+    <div dnd-droppable class="dnd__data" (onDropSuccess)="transferDataSuccess($event)">
+      <div class="panel-heading">Place to drop (Items:{{receivedData.length}})</div>
+      <div class="panel-body">
+        <div [hidden]="!receivedData.length > 0" *ngFor="let data of receivedData">{{data | json}}</div>
+      </div>
+    </div>
+  </div>
+
   <div class="proof-content__grid" *ngIf="!proofForme">
-    <mat-card *ngFor="let oneProof of proof" class="grid__card">
+    <mat-card class="grid__card" *ngFor="let oneProof of proof" dnd-draggable [dragEnabled]="true" [dragData]="oneProof">
       <mat-card-header>
         <mat-card-title style="font-weight:bold">{{oneProof.name}}</mat-card-title>
       </mat-card-header>
@@ -53,7 +63,7 @@
   </div>
 
   <mat-list class="proof-content__list" *ngIf="proofForme">
-    <mat-list-item class="list__item" *ngFor="let oneProof of proof">
+    <mat-list-item class="list__item" *ngFor="let oneProof of proof" dnd-draggable [dragEnabled]="true" [dragData]="oneProof">
       <mat-icon mat-list-icon *ngIf="isImage(oneProof.path); else notImageIconBlock" class="list-item__icon">image</mat-icon>
       <ng-template #notImageIconBlock>
         <mat-icon mat-list-icon class="list-item__icon">insert_drive_file</mat-icon>

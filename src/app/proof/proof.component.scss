@@ -17,6 +17,17 @@
 .proof-content {
   padding: 1rem 15% 4.5rem;
 
+  &__dnd {
+    border: 1px dashed black;
+    padding: .5rem 2%;
+    text-align: center;
+
+    .dnd__data {
+      background-color: white;
+      padding: 1rem;
+    }
+  }
+
   &__grid {
     display: inline-block;
 

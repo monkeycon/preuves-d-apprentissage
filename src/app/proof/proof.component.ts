@@ -17,10 +17,16 @@ export class ProofComponent implements OnInit {
   public separatorKeysCodes = [ENTER, COMMA];
   public proof = [];
 
+  public receivedData: Array<any> = [];
+
   public constructor(private proofService: ProofService, public dialog: MatDialog) {}
 
   public ngOnInit() {
     this.proof = this.proofService.getProof();
+  }
+
+  public transferDataSuccess(event: any) {
+    this.receivedData.push(event);
   }
 
   public addTag(event: MatChipInputEvent): void {
