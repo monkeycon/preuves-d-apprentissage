@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import mockProof from './mock-proof';
+import PouchDB from 'pouchdb';
 
 @Injectable()
 export class ProofService {
   private proof;
+  private db = new PouchDB('http://localhost:5984/preuves-d-apprentissage');
 
   public constructor() {
     this.proof = mockProof; // TODO get proof from DB
@@ -26,6 +28,12 @@ export class ProofService {
   public putProof(newProof: any) {
     this.proof.push(newProof);
     // TODO insert newProof to DB
+    this.db.post(newProof).then((response) => {
+      // handle response
+      console.log(response);
+    }).catch((err) => {
+      console.log(err);
+    });
   }
 
   public deleteProof(proof: any) {
