@@ -1,0 +1,11 @@
+{
+  "description": "Preuves d'apprentissage",
+  "developer": {
+    "name": "Xinyi ZENG"
+  },
+  "license": "MIT",
+  "name": "Preuves d'apprentissage",
+  "permissions": {},
+  "slug": "preuve-d-apprentissage",
+  "version": "0.0.0"
+}
