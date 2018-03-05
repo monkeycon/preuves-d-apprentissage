@@ -1,17 +1,28 @@
 import { Injectable } from '@angular/core';
 import mockProof from './mock-proof';
 import PouchDB from 'pouchdb';
+// import PouchDB from 'pouchdb-browser';
+// const PouchDB = require('pouchdb');
 
 @Injectable()
 export class ProofService {
   private proof;
-  private db = new PouchDB('http://localhost:5984/preuves-d-apprentissage');
+  public db: any = new PouchDB('http://localhost:5984/preuves-d-apprentissage');
 
   public constructor() {
     this.proof = mockProof; // TODO get proof from DB
   }
 
   public getProof() {
+    this.db.allDocs({
+      include_docs: true,
+      attachments: true,
+    }).then(function (result) {
+      // handle result
+      console.log('res' + JSON.stringify(result));
+    }).catch(function (err) {
+      console.log(err);
+    });
     return this.proof;
   }
 
@@ -30,7 +41,7 @@ export class ProofService {
     // TODO insert newProof to DB
     this.db.post(newProof).then((response) => {
       // handle response
-      console.log(response);
+      console.log('res' + JSON.stringify(response));
     }).catch((err) => {
       console.log(err);
     });
