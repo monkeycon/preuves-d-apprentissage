@@ -11,7 +11,6 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatListModule } from '@angular/material/list';
-import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { ProofComponent } from './proof.component';
@@ -36,7 +35,6 @@ import { ProofDialogComponent } from './proof-dialog.component';
     MatCardModule,
     MatSlideToggleModule,
     MatListModule,
-    MatGridListModule,
     MatDialogModule,
   ],
   entryComponents: [

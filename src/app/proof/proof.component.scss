@@ -17,12 +17,22 @@
 .proof-content {
   padding: 1rem 15% 4.5rem;
 
-  &__card {
-    margin: .3rem;
+  &__grid {
+    display: inline-block;
 
-    img {
-      cursor: pointer;
-      width: auto;
+    .grid__card {
+      display: inline-block;
+      margin: .5rem;
+      vertical-align: middle;
+      width: calc((100% - 144px - 3rem)/3);
+
+      img {
+        cursor: pointer;
+        height: auto;
+        max-height: 112px;
+        max-width: 100%;
+        width: auto;
+      }
     }
   }
 
