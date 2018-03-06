@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
-import { MatChipInputEvent,  MAT_DIALOG_DATA } from '@angular/material';
+import { MatChipInputEvent, MAT_DIALOG_DATA } from '@angular/material';
 import { FormControl, Validators } from '@angular/forms';
 
 import { ProofService } from './proof.service';
