@@ -6,23 +6,23 @@ import PouchDB from 'pouchdb';
 
 @Injectable()
 export class ProofService {
-  private proof;
+  private proof: any = [];
   public db: any = new PouchDB('http://localhost:5984/preuves-d-apprentissage');
 
   public constructor() {
-    this.proof = mockProof; // TODO get proof from DB
-  }
-
-  public getProof() {
+    // Get all proofs from DB
     this.db.allDocs({
       include_docs: true,
-      attachments: true,
-    }).then(function (result) {
-      // handle result
-      console.log('res' + JSON.stringify(result));
-    }).catch(function (err) {
-      console.log(err);
+      attachments: true
+    }, (err, response) => {
+      if (err) { return console.log(err); }
+      response.rows.map((ele) => {
+        this.proof.push(ele.doc);
+      });
     });
+  }
+
+  public getProof(): any[] {
     return this.proof;
   }
 
@@ -37,13 +37,14 @@ export class ProofService {
   }
 
   public putProof(newProof: any) {
-    this.proof.push(newProof);
-    // TODO insert newProof to DB
-    this.db.post(newProof).then((response) => {
-      // handle response
-      console.log('res' + JSON.stringify(response));
-    }).catch((err) => {
-      console.log(err);
+    // Insert newProof to DB
+    this.db.post(newProof, (e, response) => {
+      if (e) { return console.log(e); }
+      console.log(response);
+      this.db.get(response.id, (err, doc) => {
+        if (e) { return console.log(err); }
+        this.proof.push(doc);
+      });
     });
   }
 
@@ -51,7 +52,14 @@ export class ProofService {
     const index = this.proof.indexOf(proof);
     if (index !== -1) {
       this.proof.splice(index, 1);
-      // TODO delete proof from DB
+      // Delete proof from DB
+      this.db.get(proof._id, (e, doc) => {
+        if (e) { return console.log(e); }
+        this.db.remove(doc, (err, response) => {
+          if (err) { return console.log(err); }
+          console.log(response);
+        });
+      });
     }
   }
 

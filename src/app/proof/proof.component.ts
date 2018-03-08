@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { MatChipInputEvent, MatDialog } from '@angular/material';
 
@@ -9,17 +9,14 @@ import { ProofDialogComponent } from './proof-dialog.component';
   selector: 'app-proof',
   templateUrl: './proof.component.html',
   styleUrls: ['./proof.component.scss'],
-  providers: [ ProofService ],
 })
-export class ProofComponent implements OnInit {
+export class ProofComponent {
   public searchedTags = [];
   public proofForme = false;
   public separatorKeysCodes = [ENTER, COMMA];
-  public proof = [];
+  public proof: any = [];
 
-  public constructor(private proofService: ProofService, public dialog: MatDialog) {}
-
-  public ngOnInit() {
+  public constructor(private proofService: ProofService, public dialog: MatDialog) {
     this.proof = this.proofService.getProof();
   }
 
@@ -53,11 +50,9 @@ export class ProofComponent implements OnInit {
   }
 
   public openDialog(): void {
-    {
-      this.dialog.open(ProofDialogComponent, {
-        data: {}
-      });
-    }
+    const dialogRef = this.dialog.open(ProofDialogComponent, {
+      data: {}
+    });
   }
 
   public isImage(path: string) {
