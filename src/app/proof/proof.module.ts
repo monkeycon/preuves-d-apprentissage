@@ -15,7 +15,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 import { ProofComponent } from './proof.component';
 import { ProofDialogComponent } from './proof-dialog.component';
-
+import { ProofService } from './proof.service';
 
 @NgModule({
   declarations: [
@@ -43,6 +43,8 @@ import { ProofDialogComponent } from './proof-dialog.component';
   exports: [
     ProofComponent,
   ],
-  providers: [],
+  providers: [
+    ProofService,
+  ],
 })
 export class ProofModule { }

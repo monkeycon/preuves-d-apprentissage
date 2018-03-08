@@ -9,7 +9,6 @@ import { ProofService } from './proof.service';
   selector: 'app-proof-dialog',
   templateUrl: './proof-dialog.component.html',
   styleUrls: ['./proof-dialog.component.scss'],
-  providers: [ ProofService ],
 })
 export class ProofDialogComponent {
   public separatorKeysCodes = [ENTER, COMMA];
