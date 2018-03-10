@@ -2,8 +2,11 @@ import { Component, Inject } from '@angular/core';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { MatChipInputEvent, MAT_DIALOG_DATA } from '@angular/material';
 import { FormControl, Validators } from '@angular/forms';
+import { FileUploader } from 'ng2-file-upload';
 
 import { ProofService } from './proof.service';
+
+const URL = '/upload/files/';
 
 @Component({
   selector: 'app-proof-dialog',
@@ -16,6 +19,9 @@ export class ProofDialogComponent {
   public name = new FormControl('', [Validators.required]);
   public description = '';
   public proofTag = [];
+  public path = URL;
+
+  public uploader: FileUploader = new FileUploader({url: URL});
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private proofService: ProofService) {}
 
@@ -48,6 +54,11 @@ export class ProofDialogComponent {
       name: this.name.value,
       description: this.description,
       tags: this.proofTag.map((e) => e.name),
+      path: this.path + this.name,
     });
+  }
+
+  public inputFile(event) {
+    console.log(event);
   }
 }

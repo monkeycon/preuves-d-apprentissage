@@ -12,6 +12,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { ProofComponent } from './proof.component';
 import { ProofDialogComponent } from './proof-dialog.component';
@@ -36,6 +37,7 @@ import { ProofDialogComponent } from './proof-dialog.component';
     MatSlideToggleModule,
     MatListModule,
     MatDialogModule,
+    FileUploadModule,
   ],
   entryComponents: [
     ProofDialogComponent,
