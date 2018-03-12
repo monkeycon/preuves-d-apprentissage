@@ -16,7 +16,7 @@ export class ProofService {
   public getProofByTag(searchedTags: string[]) {
     const searchedProof = [];
     this.proof.map((ele) => {
-      if (searchedTags.every((e) => ele.tags.indexOf(e) !== -1)) {
+      if (searchedTags.every((e) => (ele.tags && ele.tags.indexOf(e) !== -1))) {
         searchedProof.push(ele);
       }
     });
